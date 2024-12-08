@@ -10,7 +10,8 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 400px;
+    width: 90%; /* Berubah dari fix width ke persentase */
+    max-width: 400px; /* Batas maksimum untuk layar besar */
     padding: 20px;
     background-color: rgba(248, 243, 223, 0.59);
     border-radius: 10px;
@@ -29,7 +30,7 @@ body {
 }
 
 .logo {
-    max-width: 80%;
+    max-width: 100%;
     height: auto;
 }
 
@@ -59,19 +60,19 @@ body {
     font-size: 15px;
 }
 
-input[type="text"] {
+input[type="text"], textarea {
     margin-top: 5px;
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 4px; /* Menambah sudut membulat */
 }
+
 textarea {
-    margin-top: 5px;
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    box-sizing: border-box;
+    resize: none; /* Mencegah perubahan ukuran secara manual */
+    height: 100px; /* Tinggi default untuk textarea */
 }
 
 button {
@@ -85,8 +86,49 @@ button {
     font-size: 16px;
     text-transform: uppercase;
     box-shadow: 0 0.5px 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease; /* Efek transisi */
 }
 
 button:hover {
     box-shadow: 0 1px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* Media Queries untuk Responsivitas */
+@media (max-width: 768px) {
+    .contact-us {
+        width: 95%; /* Lebar penuh untuk layar kecil */
+        max-width: none;
+        padding: 15px;
+    }
+
+    .judul {
+        font-size: 18px;
+        padding-bottom: 3%;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    input[type="text"], textarea {
+        font-size: 13px;
+        padding: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .judul {
+        font-size: 16px;
+    }
+
+    button {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    input[type="text"], textarea {
+        font-size: 12px;
+        padding: 6px;
+    }
 }
