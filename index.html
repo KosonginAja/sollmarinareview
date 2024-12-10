@@ -11,10 +11,27 @@
     <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16x16.png">
     <link rel="manifest" href="/site.webmanifest">
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet'>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
+        // Fungsi untuk mengosongkan form
+        function clearForm() {
+            document.getElementById("formInventory").reset();
+        }
+
+        // Fungsi untuk mengirim form
         async function submitForm(event) {
             event.preventDefault(); // Mencegah pengiriman default form
             
+            // Tampilkan SweetAlert
+            swal({
+                title: "Mohon tunggu",
+                text: "Sedang mengirim data...",
+                icon: "info",
+                buttons: false,
+                closeOnClickOutside: false,
+                closeOnEsc: false
+            });
+
             // Ambil nilai input dari form
             const name = document.getElementById("name").value;
             const no = document.getElementById("no").value;
@@ -36,8 +53,12 @@
                 }
             } catch (error) {
                 alert("Terjadi kesalahan: " + error.message);
+            } finally {
+                // Tutup SweetAlert setelah proses selesai
+                swal.close();
             }
         }
+
     </script>
 </head>
 <body>
@@ -51,16 +72,16 @@
             <div class="form-section">
                 <div class="form-input">
                     <label for="name" class="label">Contact Name</label>
-                    <input type="text" class="name" id="name" name="name" placeholder="Your Name" required>
+                    <input type="text" class="name" id="name" name="name" placeholder="Your Name" autocomplete="off" required>
                 </div>
                 <div class="form-input">
                     <label for="no" class="label">Phone/Hp</label>
-                    <input type="text" class="no" id="no" name="no" placeholder="08123456789" required pattern="[0-9]*"
+                    <input type="text" class="no" id="no" name="no" placeholder="08123456789" autocomplete="off" required pattern="[0-9]*"
                         oninput="this.value = this.value.replace(/[^0-9]/g, '');">
                 </div>
                 <div class="form-input">
                     <label for="address" class="label">Address</label>
-                    <textarea class="address" id="address" name="address" required></textarea>
+                    <textarea class="address" id="address" name="address" autocomplete="off" required></textarea>
                 </div>
             </div>
             <button type="submit">Submit</button>
